@@ -34,6 +34,13 @@ For business users i suggest you take a close look at the Master Service Agreeme
 - From the postman doc
 - Usage Examples
 - Endpoint API Calls
+    - Status
+    - Area Information
+    - Areas Nearby (GPS)
+    - Areas Search (Text)
+    - Topics Nearby
+    - Check allowance
+
 
 ---
 
@@ -256,6 +263,375 @@ https://developer.sepush.co.za/business/2.0/status
             "stage_updated": "2022-08-08T16:12:53.725852+02:00"
         }
     }
+}
+
+
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 2. Area Information
+
+`Area Information` Obtain the id from Area Find or Area Search and use with this request. 
+
+This single request has everything you need to monitor upcoming loadshedding events for the chosen suburb.
+
+-------------------
+
+### Calling Parameters (Input)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`id`      |string |Https      |eskde-10-fourwaysext10cityofjohannesburggauteng |
+|`test`    |string |Https      |current                                         |
+
+### Interface Address
+
+https://developer.sepush.co.za/business/2.0/area?id=eskde-10-fourwaysext10cityofjohannesburggauteng
+
+### Request Method
+
+- HTTP 
+- GET 
+- POST
+
+### Response Parameters (Output)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`end`      |string      |Https        |2022-08-08T22:30:00+02:00                   |
+|`note`     |string      |Https        |Stage 2                                     |
+|`start`    |string      |Https        |2022-08-08T20:00:00+02:00                   |
+|`name`     |string      |Https        |Sandton-WEST (4)                            |
+|`region`   |string      |Https        |Eskom Direct, City of Johannesburg, Gauteng |
+|`date`     |string      |Https        |2022-08-08                                  |
+|`stages`   |array       |Https        |"12:00-14:30",                              |
+
+### Example:
+
+- `name` & `region`
+    - Self-explanatory
+- `events`
+    - A sorted list of events
+    - `start` & `end` times listing when it will be impacted by loadshedding
+    - Will be an empty list if not impacted
+- `schedule`
+    - Raw loadshedding schedule, per stage (1-8)
+    - Formatted for display purposes (i.e. `20:00-22:30`)
+    - Any adjacent events have been merged into a single event (e.g. `12:00-14:30` & `14:00-16:30` become `12:00-16:30`)
+    - _Note: An empty list means no events for that stage_
+    - _Note: Some Municipalities/Regions don't have Stage 5-8 schedules (and there will be 4 records instead of 8 in this list._
+    _Stage 5 upwards you can assume Stage 4 schedule impact._
+
+### Testing
+
+Include the `&test=current` or `&test=future` to get SAMPLE data returned in the `events`. 
+`current` will return a loadshedding `event` which is occurring right now, and `future` will return an event starting on the next hour.
+
+_NOTE: The schedule returned with testing data is NOT accurate data; but only for testing purposes._
+_The area `name` and `source` is updated to identify that this is testing data. This `test` request will not count towards your quota._
+
+
+### Response Result Example
+```JSON
+{
+    "events": [
+        {
+            "end": "2022-08-08T22:30:00+02:00",
+            "note": "Stage 2",
+            "start": "2022-08-08T20:00:00+02:00"
+        }
+    ],
+    "info": {
+        "name": "Sandton-WEST (4)",
+        "region": "Eskom Direct, City of Johannesburg, Gauteng"
+    },
+    "schedule": {
+        "days": [
+            {
+                "date": "2022-08-08",
+                "name": "Monday",
+                "stages": [
+                    [],
+                    [
+                        "20:00-22:30"
+                    ],
+                    [
+                        "12:00-14:30",
+                        "20:00-22:30"
+                    ],
+                    [
+                        "04:00-06:30",
+                        "12:00-14:30",
+                        "20:00-22:30"
+                    ],
+                    [
+                        "04:00-06:30",
+                        "12:00-14:30",
+                        "20:00-22:30"
+                    ],
+                    [
+                        "04:00-06:30",
+                        "12:00-14:30",
+                        "20:00-00:30"
+                    ],
+                    [
+                        "04:00-06:30",
+                        "12:00-16:30",
+                        "20:00-00:30"
+                    ],
+                    [
+                        "04:00-08:30",
+                        "12:00-16:30",
+                        "20:00-00:30"
+                    ]
+                ]
+            },
+            {
+                "date": "2022-08-09",
+                "name": "Tuesday",
+                "stages": [
+                    [
+                        "02:00-04:30"
+                    ],
+                    [
+                        "02:00-04:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-12:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ]
+                ]
+            },
+            {
+                "date": "2022-08-10",
+                "name": "Wednesday",
+                "stages": [
+                    [
+                        "10:00-12:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-14:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ]
+                ]
+            },
+            {
+                "date": "2022-08-11",
+                "name": "Thursday",
+                "stages": [
+                    [
+                        "18:00-20:30"
+                    ],
+                    [
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ]
+                ]
+            },
+            {
+                "date": "2022-08-12",
+                "name": "Friday",
+                "stages": [
+                    [],
+                    [
+                        "18:00-20:30"
+                    ],
+                    [
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-20:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-12:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-04:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ],
+                    [
+                        "02:00-06:30",
+                        "10:00-14:30",
+                        "18:00-22:30"
+                    ]
+                ]
+            }
+        ],
+        "source": "https://loadshedding.eskom.co.za/"
+    }
+}
+
+
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 3. Areas Nearby (GPS)
+
+`Areas Nearby (GPS)`Find areas based on GPS coordinates (latitude and longitude). 
+
+These are recommended areas based on EskomSePush users adding locations nearby to those coordinates.
+
+The first area returned is typically the best choice for the coordinates - as it's the most popular used.
+
+-------------------
+
+### Calling Parameters (Input)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`lat`      |long |Https      |-26.0269658 |
+|`lon`      |long |Https      |28.0137339 |
+
+### Interface Address
+
+https://developer.sepush.co.za/business/2.0/areas_nearby?lat=-26.0269658&lon=28.0137339
+
+### Request Method
+
+- HTTP 
+- GET 
+- POST
+
+### Response Parameters (Output)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`areas` |array      |Https        |[]                      |
+|`count` |string     |Https        |253                     |
+|`id`    |string     |Https        |capetown-15-observatory |
+
+
+### Example:
+
+- Returned data: 
+   - A nested Json array containing the: count, and id of areas.
+- Example: 
+   - "id": "capetown-15-observatory" = area name
+   - "count": 253 = count number
+
+
+### Response Result Example
+```JSON
+{
+    "areas": [
+        {
+            "count": 253,
+            "id": "capetown-15-observatory"
+        },
+        {
+            "count": 82,
+            "id": "capetown-15-saltriver"
+        },
+        {
+            "count": 80,
+            "id": "capetown-15-woodstockeast"
+        },
+        {
+            "count": 67,
+            "id": "capetown-15-rondebosch"
+        },
+        {
+            "count": 62,
+            "id": "capetown-7-woodstockwest"
+        }
+    ]
 }
 
 
