@@ -205,8 +205,7 @@ https://developer.sepush.co.za/business/2.0/status
 ### Request Method
 
 - HTTP 
-- GET 
-- POST
+- GET
 
 ### Response Parameters (Output)
 | Parameter  |  Mode  | Description  | example values  |
@@ -293,8 +292,7 @@ https://developer.sepush.co.za/business/2.0/area?id=eskde-10-fourwaysext10cityof
 ### Request Method
 
 - HTTP 
-- GET 
-- POST
+- GET
 
 ### Response Parameters (Output)
 | Parameter  |  Mode  | Description  | example values  |
@@ -587,8 +585,7 @@ https://developer.sepush.co.za/business/2.0/areas_nearby?lat=-26.0269658&lon=28.
 ### Request Method
 
 - HTTP 
-- GET 
-- POST
+- GET
 
 ### Response Parameters (Output)
 | Parameter  |  Mode  | Description  | example values  |
@@ -630,6 +627,125 @@ https://developer.sepush.co.za/business/2.0/areas_nearby?lat=-26.0269658&lon=28.
         {
             "count": 62,
             "id": "capetown-7-woodstockwest"
+        }
+    ]
+}
+
+
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 3. Areas Search (Text)
+
+`Areas Search (Text)`Search area based on a text query. 
+
+-------------------
+
+### Calling Parameters (Input)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`text`      |string |Https      |fourways |
+
+### Interface Address
+
+https://developer.sepush.co.za/business/2.0/areas_search?text=fourways
+
+### Request Method
+
+- HTTP 
+- GET
+
+### Response Parameters (Output)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`areas`    |array      |Https        |[]                                       |
+|`id`       |string     |Https        |westerncape-2-stellenboschmunicipality   |
+|`name`     |string     |Https        |Stellenbosch Municipality (2)            |
+|`region`   |string     |Https        |Western Cape                             |
+
+
+### Example:
+
+- Returned data: 
+   - A nested Json array containing the: id, name and region of areas.
+
+
+### Response Result Example
+```JSON
+{
+    "areas": [
+        {
+            "id": "westerncape-2-stellenboschmunicipality",
+            "name": "Stellenbosch Municipality (2)",
+            "region": "Western Cape"
+        },
+        {
+            "id": "westerncape-8-stellenboschfarmers",
+            "name": "Stellenbosch farmers (8)",
+            "region": "Western Cape"
+        },
+        {
+            "id": "eskomdirect-5215-stellenboschpart1outlyingstellenboschwesterncape",
+            "name": "Stellenbosch Part 1 Outlying",
+            "region": "Eskom Direct (Web), Stellenbosch, Western Cape"
+        },
+        {
+            "id": "eskde-4-stellenboschnucityofcapetownwesterncape",
+            "name": "Stellenbosch NU (4)",
+            "region": "Eskom Direct, City of Cape Town, Western Cape"
+        },
+        {
+            "id": "eskde-4-stellenboschnustellenboschwesterncape",
+            "name": "Stellenbosch NU (4)",
+            "region": "Eskom Direct, Stellenbosch, Western Cape"
+        },
+        {
+            "id": "eskde-8-stellenboschnustellenboschwesterncape",
+            "name": "Stellenbosch NU (8)",
+            "region": "Eskom Direct, Stellenbosch, Western Cape"
+        },
+        {
+            "id": "eskde-15-stellenboschnucityofcapetownwesterncape",
+            "name": "Stellenbosch NU (15)",
+            "region": "Eskom Direct, City of Cape Town, Western Cape"
+        },
+        {
+            "id": "eskde-15-stellenboschnustellenboschwesterncape",
+            "name": "Stellenbosch NU (15)",
+            "region": "Eskom Direct, Stellenbosch, Western Cape"
+        },
+        {
+            "id": "eskde-16-stellenboschmohokarefreestate",
+            "name": "Stellenbosch (16)",
+            "region": "Eskom Direct, Mohokare, Free State"
+        },
+        {
+            "id": "eskde-16-stellenboschnustellenboschwesterncape",
+            "name": "Stellenbosch NU (16)",
+            "region": "Eskom Direct, Stellenbosch, Western Cape"
+        },
+        {
+            "id": "eskde-16-stellengiftdrakensteinwesterncape",
+            "name": "Stellengift (16)",
+            "region": "Eskom Direct, Drakenstein, Western Cape"
+        },
+        {
+            "id": "eskdo-5-stellenboschvleibeaufortwestwesterncape",
+            "name": "Stellenboschvlei (5)",
+            "region": "Eskom Direct, Beaufort West, Western Cape"
+        },
+        {
+            "id": "eskdo-9-stellenhofsundaysrivervalleyeasterncape",
+            "name": "Stellenhof (9)",
+            "region": "Eskom Direct, Sundays River Valley, Eastern Cape"
+        },
+        {
+            "id": "westerncape-2-universityofstellenbosch",
+            "name": "University of Stellenbosch (2)",
+            "region": "Western Cape"
         }
     ]
 }
