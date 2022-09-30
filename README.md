@@ -787,7 +787,7 @@ https://developer.sepush.co.za/business/2.0/topics_nearby?lat=-26.0269658&lon=28
 |`category`  |string     |Https        |electricity                       |
 |`distance`  |long       |Https        |4.83                              |
 |`followers` |int        |Https        |1                                 |
-|`timestamp` |string     |Https        |Western Cape                      |
+|`timestamp` |string     |Https        |2022-08-08T13:02:04.776000+02:00  |
 
 
 ### Example:
