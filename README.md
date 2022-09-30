@@ -835,3 +835,57 @@ https://developer.sepush.co.za/business/2.0/topics_nearby?lat=-26.0269658&lon=28
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+## 6. Check allowance
+
+`Check allowance` Check allowance allocated for token
+
+NOTE: This call doesn't count towards your quota.
+
+-------------------
+
+### Calling Parameters (Input)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`null`      |null |null      |null |
+
+### Interface Address
+
+https://developer.sepush.co.za/business/2.0/api_allowance
+
+### Request Method
+
+- HTTP 
+- GET
+
+### Response Parameters (Output)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`count` |int     |Https        |39     |
+|`limit` |int     |Https        |50     |
+|`type`  |string  |Https        |daily  |
+
+
+### Example:
+
+- Returned data: 
+   - A Json containing the: count, limit, type.
+
+
+### Response Result Example
+```JSON
+{
+    "allowance": {
+        "count": 39,
+        "limit": 50,
+        "type": "daily"
+    }
+}
+
+
+
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
