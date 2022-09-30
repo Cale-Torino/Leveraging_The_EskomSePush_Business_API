@@ -793,7 +793,7 @@ https://developer.sepush.co.za/business/2.0/topics_nearby?lat=-26.0269658&lon=28
 ### Example:
 
 - Returned data: 
-   - A nested Json array containing the: id, name and region of areas.
+   - A nested Json array containing the: active, body, category, distance, followers, timestamp, of topics.
 
 
 ### Response Result Example
