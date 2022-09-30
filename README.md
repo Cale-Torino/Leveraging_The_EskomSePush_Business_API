@@ -638,7 +638,7 @@ https://developer.sepush.co.za/business/2.0/areas_nearby?lat=-26.0269658&lon=28.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 3. Areas Search (Text)
+## 4. Areas Search (Text)
 
 `Areas Search (Text)`Search area based on a text query. 
 
@@ -756,3 +756,82 @@ https://developer.sepush.co.za/business/2.0/areas_search?text=fourways
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 5. Topics Nearby
+
+`Topics Nearby` Find topics created by users based on GPS coordinates (latitude and longitude). Can use this to detect if there is a potential outage/problem nearby.
+
+-------------------
+
+### Calling Parameters (Input)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`lat`      |long |Https      |-26.0269658 |
+|`lon`      |long |Https      |28.0137339 |
+
+### Interface Address
+
+https://developer.sepush.co.za/business/2.0/topics_nearby?lat=-26.0269658&lon=28.0137339
+
+### Request Method
+
+- HTTP 
+- GET
+
+### Response Parameters (Output)
+| Parameter  |  Mode  | Description  | example values  |
+| :------------ | :------------ | :------------ | :------------ |
+|`topics`    |array      |Https        |[]                                |
+|`active`    |string     |Https        |2022-08-08T13:02:04.776000+02:00  |
+|`body`      |string     |Https        |testing sentance                  |
+|`category`  |string     |Https        |electricity                       |
+|`distance`  |long       |Https        |4.83                              |
+|`followers` |int        |Https        |1                                 |
+|`timestamp` |string     |Https        |Western Cape                      |
+
+
+### Example:
+
+- Returned data: 
+   - A nested Json array containing the: id, name and region of areas.
+
+
+### Response Result Example
+```JSON
+{
+    "topics": [
+        {
+            "active": "2022-08-08T13:02:04.776000+02:00",
+            "body": "Is anyone else still off in Parkhurst? According to the city power Twitter page electricity has been restored but we're out on 11th",
+            "category": "electricity",
+            "distance": 4.83,
+            "followers": 1,
+            "timestamp": "2022-08-08T13:02:04.776000+02:00"
+        },
+        {
+            "active": "2022-08-08T10:08:32.229000+02:00",
+            "body": "Anyone selling laptops",
+            "category": "information",
+            "distance": 3.48,
+            "followers": 3,
+            "timestamp": "2022-08-07T10:43:25.319000+02:00"
+        },
+        {
+            "active": "2022-08-08T10:02:52.791000+02:00",
+            "body": "Hi , if anyone is in need of a dog sitter / baby sitter I am very flexible and able to travel. I live around the  area \nContact me on  x \nMy name is ",
+            "category": "information",
+            "distance": 1.8,
+            "followers": 3,
+            "timestamp": "2022-08-08T09:48:02.819000+02:00"
+        }
+    ]
+}
+
+
+
+```
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
