@@ -277,6 +277,8 @@ https://developer.sepush.co.za/business/2.0/status
 
 This single request has everything you need to monitor upcoming loadshedding events for the chosen suburb.
 
+**Note** with this call the source json value is from Eskom: https://loadshedding.eskom.co.za
+
 -------------------
 
 ### Calling Parameters (Input)
